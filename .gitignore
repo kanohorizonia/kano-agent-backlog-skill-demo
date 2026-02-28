@@ -95,6 +95,11 @@ Thumbs.db
 .opencode/.bun/
 /kano-agent-backlog-skill-demo2.local.code-workspace
 
+# C++ build artifacts
+src/cpp/build/
+src/cpp/**/build/
+.agents/skills/kano/kano-agent-backlog-skill/src/cpp/build/
+
 #
 .vs
 /.cache/

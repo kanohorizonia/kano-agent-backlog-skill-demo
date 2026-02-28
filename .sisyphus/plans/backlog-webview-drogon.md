@@ -37,6 +37,8 @@ Critical path: Server scaffold -> Data extraction -> API -> UI integration -> QA
   - `_kano/backlog/products/kano-agent-backlog-skill/views/Dashboard_PlainMarkdown_Active.md`
   - `_kano/backlog/products/kano-commit-convention-skill/views/Dashboard_PlainMarkdown_Active.md`
   - `_kano/backlog/products/kano-opencode-quickstart/views/Dashboard_PlainMarkdown_Active.md`
+- C++ implementation convention skill:
+  - `.agents/skills/kano/kano-cpp-dev-convention/` (must be read by the executing agent before implementation)
 
 ### Metis Gap Analysis (key points to address)
 - Policy mismatch risk: `AGENTS.md` contains an explicit no-server clause (must be removed/amended by human).
@@ -213,6 +215,7 @@ Dependency notes:
 
   **References**:
   - `.gitignore` - keep derived/build outputs out of git.
+  - `.agents/skills/kano/kano-cpp-dev-convention/` - required C++ coding/build conventions for this repo.
 
   **Acceptance Criteria**:
   - [ ] Build produces a runnable binary.
