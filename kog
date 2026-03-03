@@ -1,0 +1,84 @@
+#!/usr/bin/env bash
+#
+# kog - Unified project-level Git workflow entrypoint
+
+set -euo pipefail
+
+ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+resolve_git_master_skill_root() {
+  local root="$1"
+  local candidate
+  local candidates=(
+    "$root/.agents/skills/kano/kano-git-master-skill"
+    "$root/.agents/kano/kano-git-master-skill"
+    "$root/skills/kano/kano-git-master-skill"
+    "$root/skills/kano-git-master-skill"
+  )
+
+  for candidate in "${candidates[@]}"; do
+    if [[ -d "$candidate" ]]; then
+      printf '%s' "$candidate"
+      return 0
+    fi
+  done
+
+  return 1
+}
+
+ensure_git_master_skill_ready() {
+  local root="$1"
+  if resolve_git_master_skill_root "$root" >/dev/null 2>&1; then
+    return 0
+  fi
+
+  if [[ ! -f "$root/.gitmodules" ]]; then
+    echo "ERROR: kano-git-master-skill not found and .gitmodules is missing at $root/.gitmodules" >&2
+    return 1
+  fi
+
+  echo "[kog] kano-git-master-skill not found, bootstrapping submodules..." >&2
+  (
+    cd "$root"
+    git submodule init
+    git submodule sync --recursive
+    git submodule update --init --recursive
+  )
+
+  resolve_git_master_skill_root "$root" >/dev/null
+}
+
+resolve_skill_script_path_from_candidates() {
+  local root="$1"
+  shift || true
+  local skill_root
+  local rel_path
+  local candidate
+
+  skill_root="$(resolve_git_master_skill_root "$root")" || return 1
+  for rel_path in "$@"; do
+    candidate="$skill_root/$rel_path"
+    if [[ -f "$candidate" ]]; then
+      printf '%s' "$candidate"
+      return 0
+    fi
+  done
+
+  return 1
+}
+
+ensure_git_master_skill_ready "$ROOT"
+
+SKILL_ROOT="$(resolve_git_master_skill_root "$ROOT")" || {
+  echo "ERROR: kano-git-master-skill root path could not be resolved." >&2
+  exit 1
+}
+
+KOG_LAUNCHER="$(resolve_skill_script_path_from_candidates "$ROOT" "scripts/kog" "src/shell/kog")" || {
+  echo "ERROR: Git Master Skill launcher not found (expected scripts/kog or src/shell/kog)." >&2
+  exit 1
+}
+
+export KANO_GIT_MASTER_ROOT="$ROOT"
+export KANO_GIT_SCRIPTS_DIR="$SKILL_ROOT/src/shell"
+exec bash "$KOG_LAUNCHER" "$@"
