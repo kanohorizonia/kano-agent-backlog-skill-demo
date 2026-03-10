@@ -3,13 +3,13 @@
 <!-- kano:build
 vcs.provider: git
 vcs.branch: main
-vcs.revno: 166
-vcs.hash: cae516533820784a5084cbf6c5602873486353eb
+vcs.revno: 179
+vcs.hash: dcefaa14b3de8dbeaa51939d2c0042c2a0ae4ca1
 vcs.dirty: true
 -->
 
 Source: items
-Agent: copilot
+Agent: opencode
 
 ## New
 
@@ -24,6 +24,7 @@ Agent: copilot
 - [KABSD-EPIC-0010 0.0.3 Archive semantics + topic evidence packs](../items/epic/0000/KABSD-EPIC-0010_0-0-3-archive-semantics-topic-evidence-packs.md)
 - [KABSD-EPIC-0011 Inspector Pattern: External Agent Query Surface](../items/epic/0000/KABSD-EPIC-0011_inspector-pattern-external-agent-query-surface.md)
 - [KABSD-EPIC-0014 kano-agent-backlog-skill v0.0.3 - Configuration System Refactor](../items/epic/0000/KABSD-EPIC-0014_kano-agent-backlog-skill-v0-0-3-configuration-system-refactor.md)
+- [KABSD-EPIC-0018 C++ migration: remove Python runtime from kano-agent-backlog-skill](../items/epic/0000/KABSD-EPIC-0018_c-migration-remove-python-runtime-from-kano-agent-backlog-skill.md)
 
 ### Feature
 
@@ -54,6 +55,8 @@ Agent: copilot
 - [KABSD-FTR-0054 Brainstorm Pulse: generate non-backlog idea feed (time-ordered)](../items/feature/0000/KABSD-FTR-0054_brainstorm-pulse-generate-non-backlog-idea-feed-time-ordered.md)
 - [KABSD-FTR-0055 Query Surface API Implementation](../items/feature/0000/KABSD-FTR-0055_query-surface-api-implementation.md)
 - [KABSD-FTR-0056 Inspector Agent Reference Implementation](../items/feature/0000/KABSD-FTR-0056_inspector-agent-reference-implementation.md)
+- [KABSD-FTR-0067 Define C++ target architecture and migration contract](../items/feature/0000/KABSD-FTR-0067_define-c-target-architecture-and-migration-contract.md)
+- [KABSD-FTR-0068 Implement phased C++ runtime replacement and remove Python execution path](../items/feature/0000/KABSD-FTR-0068_implement-phased-c-runtime-replacement-and-remove-python-execution-path.md)
 
 ### UserStory
 
@@ -172,6 +175,13 @@ Agent: copilot
 - [KABSD-TSK-0325 Document new project-level config system](../items/task/0300/KABSD-TSK-0325_document-new-project-level-config-system.md)
 - [KABSD-TSK-0326 驗證破壞性重構完成](../items/task/0300/KABSD-TSK-0326_untitled.md)
 - [KABSD-TSK-0330 Test correct ID after full fix](../items/task/0300/KABSD-TSK-0330_test-correct-id-after-full-fix.md)
+- [KABSD-TSK-0369 Define CLI compatibility contract and behavior parity matrix](../items/task/0300/KABSD-TSK-0369_define-cli-compatibility-contract-and-behavior-parity-matrix.md)
+- [KABSD-TSK-0370 Define parity test harness and migration acceptance gates](../items/task/0300/KABSD-TSK-0370_define-parity-test-harness-and-migration-acceptance-gates.md)
+- [KABSD-TSK-0371 Inventory Python modules and map to C++ package boundaries](../items/task/0300/KABSD-TSK-0371_inventory-python-modules-and-map-to-c-package-boundaries.md)
+- [KABSD-TSK-0372 Decommission Python runtime and packaging artifacts after parity pass](../items/task/0300/KABSD-TSK-0372_decommission-python-runtime-and-packaging-artifacts-after-parity-pass.md)
+- [KABSD-TSK-0373 Replace Python CLI path with native C++ CLI implementation](../items/task/0300/KABSD-TSK-0373_replace-python-cli-path-with-native-c-cli-implementation.md)
+- [KABSD-TSK-0374 Implement C++ core domain modules and file-format invariants](../items/task/0300/KABSD-TSK-0374_implement-c-core-domain-modules-and-file-format-invariants.md)
+- [KABSD-TSK-0375 Migrate ops workflows to C++ and integrate storage adapters](../items/task/0300/KABSD-TSK-0375_migrate-ops-workflows-to-c-and-integrate-storage-adapters.md)
 
 ### Bug
 

@@ -96,9 +96,11 @@ Thumbs.db
 /kano-agent-backlog-skill-demo2.local.code-workspace
 
 # C++ build artifacts
-src/cpp/build/
-src/cpp/**/build/
-.agents/skills/kano/kano-agent-backlog-skill/src/cpp/build/
+src/cpp/build/*
+!src/cpp/build/script/
+.agents/skills/kano/kano-agent-backlog-skill/src/cpp/build/*
+!.agents/skills/kano/kano-agent-backlog-skill/src/cpp/build/script/
+test_backlog/
 
 #
 .vs
