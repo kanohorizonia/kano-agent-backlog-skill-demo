@@ -157,7 +157,7 @@ For each release version, update or create:
 
 Checklist:
 - Phase1 report is PASS (version/docs consistency).
-- Phase2 report is PASS (doctor/pytest/sandboxed smoke).
+- Phase2 report is PASS (doctor/native smoke/sandboxed smoke).
 - Release notes exist in both locations:
   - `docs/releases/<version>.md`
   - `skills/kano-agent-backlog-skill/docs/releases/<version>.md`

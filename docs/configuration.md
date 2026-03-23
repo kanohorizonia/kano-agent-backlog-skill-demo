@@ -147,13 +147,13 @@ Profiles can be stored in two places:
 
 ```bash
 # Use shorthand (searches .kano/backlog_config/ first, then built-in profiles)
-kano-backlog embedding build --profile embedding/local-noop
+kob embedding build --profile embedding/local-noop
 
 # Use explicit path (absolute or repo-relative)
-kano-backlog embedding build --profile .kano/backlog_config/embedding/local-noop.toml
+kob embedding build --profile .kano/backlog_config/embedding/local-noop.toml
 
 # Use absolute path
-kano-backlog embedding build --profile /path/to/custom-profile.toml
+kob embedding build --profile /path/to/custom-profile.toml
 ```
 
 **Via project config:**
@@ -206,13 +206,13 @@ EOF
 **Step 2:** Use the profile
 
 ```bash
-kano-backlog embedding build --profile embedding/my-custom
+kob embedding build --profile embedding/my-custom
 ```
 
 **Step 3:** Verify effective configuration
 
 ```bash
-kano-backlog config show --profile embedding/my-custom
+kob config show --profile embedding/my-custom
 ```
 
 This displays the merged configuration with your profile applied.
@@ -233,7 +233,7 @@ kano-agent-backlog-skill includes several built-in profiles:
 **To list available profiles:**
 
 ```bash
-kano-backlog config list-profiles
+kob config list-profiles
 ```
 
 ## Environment Variables
@@ -248,7 +248,7 @@ kano-agent-backlog-skill respects several environment variables for configuratio
 - **Example:**
   ```bash
   export GEMINI_API_KEY="your-api-key-here"
-  kano-backlog embedding build --profile embedding/gemini-embedding-001
+  kob embedding build --profile embedding/gemini-embedding-001
   ```
 
 **OPENAI_API_KEY**
@@ -257,7 +257,7 @@ kano-agent-backlog-skill respects several environment variables for configuratio
 - **Example:**
   ```bash
   export OPENAI_API_KEY="sk-..."
-  kano-backlog embedding build --profile embedding/openai-text-embedding-3-small
+  kob embedding build --profile embedding/openai-text-embedding-3-small
   ```
 
 ### Configuration Overrides
@@ -268,7 +268,7 @@ kano-agent-backlog-skill respects several environment variables for configuratio
 - **Example:**
   ```bash
   export KANO_BACKLOG_ROOT="/path/to/custom/backlog"
-  kano-backlog item list --product my-project
+  kob item list --product my-project
   ```
 
 **KANO_BACKLOG_CONFIG**
@@ -277,7 +277,7 @@ kano-agent-backlog-skill respects several environment variables for configuratio
 - **Example:**
   ```bash
   export KANO_BACKLOG_CONFIG="/path/to/custom-config.toml"
-  kano-backlog config show
+  kob config show
   ```
 
 **KANO_CACHE_ROOT**
@@ -286,7 +286,7 @@ kano-agent-backlog-skill respects several environment variables for configuratio
 - **Example:**
   ```bash
   export KANO_CACHE_ROOT="/tmp/kano-cache"
-  kano-backlog embedding build
+  kob embedding build
   ```
 
 ### Debugging and Logging
@@ -298,7 +298,7 @@ kano-agent-backlog-skill respects several environment variables for configuratio
 - **Example:**
   ```bash
   export KANO_LOG_LEVEL=DEBUG
-  kano-backlog item create --type task --title "Test" --product my-project --agent me
+  kob item create --type task --title "Test" --product my-project --agent me
   ```
 
 **KANO_DEBUG**
@@ -307,7 +307,7 @@ kano-agent-backlog-skill respects several environment variables for configuratio
 - **Example:**
   ```bash
   export KANO_DEBUG=1
-  kano-backlog doctor
+  kob doctor
   ```
 
 ### Environment Variable Precedence
@@ -329,7 +329,7 @@ export KANO_LOG_LEVEL=WARNING
 # .kano/backlog_config.toml: [shared.log] debug = true
 
 # CLI parameter overrides everything
-kano-backlog item list --log-level ERROR
+kob item list --log-level ERROR
 ```
 
 ## Backlog Root Setup
@@ -538,21 +538,21 @@ max_tokens = 1024
 **List all products:**
 
 ```bash
-kano-backlog config show
+kob config show
 ```
 
 **Create items in different products:**
 
 ```bash
 # Create task in web-app
-kano-backlog item create \
+kob item create \
   --type task \
   --title "Add login page" \
   --product web-app \
   --agent your-name
 
 # Create task in api-server
-kano-backlog item create \
+kob item create \
   --type task \
   --title "Implement auth endpoint" \
   --product api-server \
@@ -563,20 +563,20 @@ kano-backlog item create \
 
 ```bash
 # List web-app items
-kano-backlog item list --product web-app
+kob item list --product web-app
 
 # List api-server items
-kano-backlog item list --product api-server
+kob item list --product api-server
 ```
 
 **Generate views per product:**
 
 ```bash
 # Refresh web-app views
-kano-backlog view refresh --product web-app --agent your-name
+kob view refresh --product web-app --agent your-name
 
 # Refresh api-server views
-kano-backlog view refresh --product api-server --agent your-name
+kob view refresh --product api-server --agent your-name
 ```
 
 ### Shared vs. Product-Specific Settings
@@ -608,7 +608,7 @@ kano-backlog view refresh --product api-server --agent your-name
 Check if your configuration is valid:
 
 ```bash
-kano-backlog config show
+kob config show
 ```
 
 This displays the effective configuration for the default product, including:
@@ -619,13 +619,13 @@ This displays the effective configuration for the default product, including:
 **Validate a specific product:**
 
 ```bash
-kano-backlog config show --product my-project
+kob config show --product my-project
 ```
 
 **Validate with a profile:**
 
 ```bash
-kano-backlog config show --profile embedding/gemini-embedding-001
+kob config show --profile embedding/gemini-embedding-001
 ```
 
 ### Common Configuration Errors
@@ -640,7 +640,7 @@ Create .kano/backlog_config.toml in project root.
 **Solution:** Create `.kano/backlog_config.toml`:
 
 ```bash
-kano-backlog backlog init --product my-project --agent your-name
+kob admin init --product my-project --agent your-name
 ```
 
 **Error: Invalid TOML syntax**
@@ -679,7 +679,7 @@ ConfigError: Backlog root '_kano/backlog' does not exist
 **Solution:** Initialize the backlog:
 
 ```bash
-kano-backlog backlog init --product my-project --agent your-name
+kob admin init --product my-project --agent your-name
 ```
 
 ### Configuration Cache
@@ -691,7 +691,7 @@ kano-agent-backlog-skill caches the effective configuration to improve performan
 **When cache is updated:**
 - When source config files change (detected via mtime)
 - When you use `--profile` (creates `effective_runtime_backlog_config.toml`)
-- When you run `kano-backlog config show`
+- When you run `kob config show`
 
 **Clear the cache:**
 
@@ -710,11 +710,11 @@ Use different settings based on environment:
 ```bash
 # Development
 export KANO_BACKLOG_CONFIG=".kano/backlog_config.dev.toml"
-kano-backlog item list
+kob item list
 
 # Production
 export KANO_BACKLOG_CONFIG=".kano/backlog_config.prod.toml"
-kano-backlog item list
+kob item list
 ```
 
 ### Configuration Templates
@@ -773,7 +773,7 @@ root = ".kano/cache/backlog"
 EOF
 
 # Use it
-kano-backlog item list --profile base
+kob item list --profile base
 ```
 
 ## Configuration Examples
@@ -893,11 +893,11 @@ root = "/var/cache/kano"
 ```bash
 # Development
 export KANO_BACKLOG_CONFIG=".kano/backlog_config.dev.toml"
-kano-backlog item list
+kob item list
 
 # Production
 export KANO_BACKLOG_CONFIG=".kano/backlog_config.prod.toml"
-kano-backlog item list
+kob item list
 ```
 
 ## Troubleshooting Configuration
@@ -922,7 +922,7 @@ kano-backlog item list
 
 3. Check effective configuration:
    ```bash
-   kano-backlog config show
+   kob config show
    ```
 
 ### Issue: Profile not found
@@ -934,7 +934,7 @@ kano-backlog item list
 
 1. List available profiles:
    ```bash
-   kano-backlog config list-profiles
+   kob config list-profiles
    ```
 
 2. Check profile path:
@@ -944,7 +944,7 @@ kano-backlog item list
 
 3. Use explicit path:
    ```bash
-   kano-backlog embedding build --profile .kano/backlog_config/embedding/my-profile.toml
+   kob embedding build --profile .kano/backlog_config/embedding/my-profile.toml
    ```
 
 ### Issue: Settings not overriding
@@ -958,12 +958,12 @@ kano-backlog item list
 
 2. Verify effective configuration:
    ```bash
-   kano-backlog config show --profile my-profile
+   kob config show --profile my-profile
    ```
 
 3. Use CLI parameters for highest priority:
    ```bash
-   kano-backlog item list --log-level DEBUG
+   kob item list --log-level DEBUG
    ```
 
 ### Issue: Environment variables not working
@@ -980,12 +980,12 @@ kano-backlog item list
 
 2. Check if config file overrides it:
    ```bash
-   kano-backlog config show
+   kob config show
    ```
 
 3. Use CLI parameter to override everything:
    ```bash
-   kano-backlog item list --log-level DEBUG
+   kob item list --log-level DEBUG
    ```
 
 ## Next Steps
@@ -1004,4 +1004,4 @@ Now that you understand configuration:
 
 ---
 
-**Need help?** Run `kano-backlog config show` to see your effective configuration, or `kano-backlog doctor` to validate your environment.
+**Need help?** Run `kob config show` to see your effective configuration, or `kob doctor` to validate your environment.

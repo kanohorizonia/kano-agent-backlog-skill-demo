@@ -1,0 +1,16 @@
+Proof audit
+
+- Claim: active local execution path is native-only
+  - Supported by: `.sisyphus/evidence/task-1-command-matrix.txt`, `.sisyphus/evidence/task-2-ctest.txt`
+
+- Claim: canonical Windows build path is unified
+  - Supported by: `.sisyphus/evidence/task-3-build-policy.txt`
+
+- Claim: repo-root Python runtime/test residue was removed
+  - Supported by: `.sisyphus/evidence/task-4-python-classification.md`
+
+- Claim: native smoke coverage exists for active local verification
+  - Supported by: `.sisyphus/evidence/task-7-foundational-smoke.txt`
+
+- Unsupported claims found
+  - None

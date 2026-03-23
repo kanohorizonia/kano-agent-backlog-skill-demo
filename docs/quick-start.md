@@ -19,15 +19,16 @@ pip install kano-agent-backlog-skill
 **Verify installation:**
 
 ```bash
-kano-backlog --version
+bash scripts/internal/show-version.sh
+kob
 ```
 
-You should see the version number displayed (e.g., `0.1.0`).
+You should see the repo version and the kob command usage output.
 
 **Check your environment:**
 
 ```bash
-kano-backlog doctor
+kob doctor
 ```
 
 This command validates your environment and reports any issues. All checks should pass (✅) before proceeding.
@@ -41,7 +42,7 @@ Create a new backlog in your project directory:
 cd /path/to/your/project
 
 # Initialize a new backlog with a product name
-kano-backlog backlog init --product my-project --agent your-name
+kob admin init --product my-project --agent your-name
 ```
 
 This creates a `_kano/backlog/` directory structure with:
@@ -55,7 +56,7 @@ This creates a `_kano/backlog/` directory structure with:
 Let's create a task to track some work:
 
 ```bash
-kano-backlog item create \
+kob item create \
   --type task \
   --title "Set up project documentation" \
   --product my-project \
@@ -79,7 +80,7 @@ The CLI automatically:
 List all items in your product:
 
 ```bash
-kano-backlog item list --product my-project
+kob item list --product my-project
 ```
 
 **Output:**
@@ -90,7 +91,7 @@ MYPROJ-TSK-0001  Task       Proposed  Set up project documentation
 **View a specific item:**
 
 ```bash
-kano-backlog item show MYPROJ-TSK-0001
+kob workitem read MYPROJ-TSK-0001
 ```
 
 This displays the full item content including frontmatter and markdown body.
@@ -101,28 +102,28 @@ Move your task through the workflow:
 
 ```bash
 # Move to Planned state
-kano-backlog item update-state \
-  --id MYPROJ-TSK-0001 \
+kob workitem update-state \
+  MYPROJ-TSK-0001 \
   --state Planned \
-  --agent your-name
+  --product my-project
 
 # Move to Ready state (requires all required fields to be filled)
-kano-backlog item update-state \
-  --id MYPROJ-TSK-0001 \
+kob workitem update-state \
+  MYPROJ-TSK-0001 \
   --state Ready \
-  --agent your-name
+  --product my-project
 
 # Move to InProgress when you start work
-kano-backlog item update-state \
-  --id MYPROJ-TSK-0001 \
+kob workitem update-state \
+  MYPROJ-TSK-0001 \
   --state InProgress \
-  --agent your-name
+  --product my-project
 
 # Move to Done when complete
-kano-backlog item update-state \
-  --id MYPROJ-TSK-0001 \
+kob workitem update-state \
+  MYPROJ-TSK-0001 \
   --state Done \
-  --agent your-name
+  --product my-project
 ```
 
 Each state transition:
@@ -160,7 +161,7 @@ Edit the markdown sections below the frontmatter, then save the file.
 **Create an Epic (high-level initiative):**
 
 ```bash
-kano-backlog item create \
+kob item create \
   --type epic \
   --title "Improve documentation" \
   --product my-project \
@@ -170,7 +171,7 @@ kano-backlog item create \
 **Create a Feature (user-facing capability):**
 
 ```bash
-kano-backlog item create \
+kob item create \
   --type feature \
   --title "Add quick start guide" \
   --product my-project \
@@ -181,7 +182,7 @@ kano-backlog item create \
 **Create a User Story:**
 
 ```bash
-kano-backlog item create \
+kob item create \
   --type user-story \
   --title "As a new user, I want a quick start guide" \
   --product my-project \
@@ -192,7 +193,7 @@ kano-backlog item create \
 **Create a Bug:**
 
 ```bash
-kano-backlog item create \
+kob item create \
   --type bug \
   --title "Installation fails on Python 3.8" \
   --product my-project \
@@ -204,7 +205,7 @@ kano-backlog item create \
 Document important architectural decisions:
 
 ```bash
-kano-backlog adr create \
+kob adr create \
   --title "Use SQLite for local storage" \
   --product my-project \
   --agent your-name
@@ -225,12 +226,12 @@ You now know the basics! Here's what to explore next:
 
 2. **Explore views** - Generate Obsidian Dataview dashboards:
    ```bash
-   kano-backlog view refresh --product my-project --agent your-name
+   kob view refresh --product my-project --agent your-name
    ```
 
 3. **Work with multiple products** - Create separate backlogs for different projects:
    ```bash
-   kano-backlog backlog init --product another-project --agent your-name
+   kob admin init --product another-project --agent your-name
    ```
 
 4. **Integrate with your workflow** - Use the backlog discipline described in [AGENTS.md](../AGENTS.md) to track work before making code changes
@@ -241,30 +242,31 @@ You now know the basics! Here's what to explore next:
 
 ```bash
 # Environment validation
-kano-backlog doctor
+kob doctor
 
 # Backlog management
-kano-backlog backlog init --product <name> --agent <agent>
+kob admin init --product <name> --agent <agent>
 
 # Item management
-kano-backlog item create --type <type> --title "<title>" --product <name> --agent <agent>
-kano-backlog item list --product <name>
-kano-backlog item show <ID>
-kano-backlog item update-state --id <ID> --state <state> --agent <agent>
+kob item create --type <type> --title "<title>" --product <name> --agent <agent>
+kob item list --product <name>
+kob workitem read <ID>
+kob workitem update-state <ID> --state <state> --product <name>
 
 # ADR management
-kano-backlog adr create --title "<title>" --product <name> --agent <agent>
-kano-backlog adr list --product <name>
+kob adr create --title "<title>" --product <name> --agent <agent>
+# Use `kob adr create` to start a new ADR file; list via repository files/views
 
 # View management
-kano-backlog view refresh --product <name> --agent <agent>
+kob view refresh --product <name> --agent <agent>
 ```
 
 ## Getting Help
 
-- Run any command with `--help` to see available options:
+- Run command wrappers or `kob` itself to inspect available actions:
   ```bash
-  kano-backlog item create --help
+  kob
+  bash scripts/core/create-workitem.sh --help
   ```
 
 - Check the [Installation Guide](installation.md) for troubleshooting

@@ -1,0 +1,7 @@
+[project]
+name = "Kano Demo"
+prefix = "KABSD"
+
+[vector]
+enabled = true
+

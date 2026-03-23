@@ -23,7 +23,7 @@ Administrative commands for backlog setup, maintenance, and validation.
 Create a new backlog structure for your product:
 
 ```bash
-kano-backlog admin init --product my-app --agent kiro
+kob admin init --product my-app --agent kiro
 ```
 
 **Expected Output:**
@@ -47,7 +47,7 @@ kano-backlog admin init --product my-app --agent kiro
 Check if your backlog structure is valid:
 
 ```bash
-kano-backlog admin validate structure --product my-app
+kob validate repo-layout
 ```
 
 **Expected Output:**
@@ -65,7 +65,7 @@ kano-backlog admin validate structure --product my-app
 Document a significant technical decision:
 
 ```bash
-kano-backlog admin adr create \
+kob adr create \
   --title "Use JWT for authentication" \
   --product my-app \
   --agent kiro
@@ -94,7 +94,7 @@ Commands for creating and managing work items (Epic, Feature, User Story, Task, 
 Create a high-level initiative:
 
 ```bash
-kano-backlog item create --type epic \
+kob item create --type epic \
   --title "User Authentication System" \
   --product my-app \
   --agent kiro
@@ -139,7 +139,7 @@ product: my-app
 Create a feature linked to an epic:
 
 ```bash
-kano-backlog item create --type feature \
+kob item create --type feature \
   --title "JWT Token Management" \
   --parent MYAPP-EPC-0001 \
   --product my-app \
@@ -159,7 +159,7 @@ kano-backlog item create --type feature \
 Create a concrete implementation task:
 
 ```bash
-kano-backlog item create --type task \
+kob item create --type task \
   --title "Implement JWT token generation" \
   --parent MYAPP-FTR-0001 \
   --product my-app \
@@ -179,7 +179,7 @@ kano-backlog item create --type task \
 Move a task to Ready state with all required fields:
 
 ```bash
-kano-backlog item set-ready MYAPP-TSK-0001 \
+kob workitem set-ready MYAPP-TSK-0001 \
   --product my-app \
   --context "Users need secure authentication tokens for API access" \
   --goal "Generate JWT tokens with user claims and expiration" \
@@ -207,7 +207,7 @@ kano-backlog item set-ready MYAPP-TSK-0001 \
 Manually transition an item to a different state:
 
 ```bash
-kano-backlog item update-state MYAPP-TSK-0001 \
+kob workitem update-state MYAPP-TSK-0001 \
   --state InProgress \
   --agent kiro \
   --product my-app
@@ -225,7 +225,7 @@ kano-backlog item update-state MYAPP-TSK-0001 \
 View all items in your backlog:
 
 ```bash
-kano-backlog item list --product my-app
+kob item list --product my-app
 ```
 
 **Expected Output:**
@@ -237,12 +237,12 @@ MYAPP-TSK-0001  Task     InProgress  Implement JWT token generation
 
 **Filter by Type:**
 ```bash
-kano-backlog item list --product my-app --type task
+kob item list --product my-app --type task
 ```
 
 **Filter by State:**
 ```bash
-kano-backlog item list --product my-app --state InProgress
+kob item list --product my-app --state InProgress
 ```
 
 ### Show Item Details
@@ -250,7 +250,7 @@ kano-backlog item list --product my-app --state InProgress
 Display full details of a specific item:
 
 ```bash
-kano-backlog item show MYAPP-TSK-0001 --product my-app
+kob workitem read MYAPP-TSK-0001 --product my-app
 ```
 
 **Expected Output:**
@@ -295,7 +295,7 @@ Commands for managing Architecture Decision Records.
 Document a technical decision:
 
 ```bash
-kano-backlog admin adr create \
+kob adr create \
   --title "Use PostgreSQL for user data storage" \
   --product my-app \
   --agent kiro
@@ -352,7 +352,7 @@ Proposed
 Associate an ADR with a work item:
 
 ```bash
-kano-backlog worklog append MYAPP-TSK-0001 \
+kob worklog append MYAPP-TSK-0001 \
   --message "Linked ADR-0002 for database choice" \
   --agent kiro \
   --product my-app
@@ -374,7 +374,7 @@ Commands for context grouping and rapid focus area switching.
 Create a new topic for related work:
 
 ```bash
-kano-backlog topic create auth-refactor \
+kob topic create auth-refactor \
   --description "Refactor authentication system for better security" \
   --agent kiro
 ```
@@ -391,8 +391,8 @@ kano-backlog topic create auth-refactor \
 Associate work items with a topic:
 
 ```bash
-kano-backlog topic add auth-refactor --item MYAPP-TSK-0001
-kano-backlog topic add auth-refactor --item MYAPP-FTR-0001
+kob topic add auth-refactor --item MYAPP-TSK-0001
+kob topic add auth-refactor --item MYAPP-FTR-0001
 ```
 
 **Expected Output:**
@@ -406,7 +406,7 @@ kano-backlog topic add auth-refactor --item MYAPP-FTR-0001
 Reference important documents in a topic:
 
 ```bash
-kano-backlog topic pin auth-refactor \
+kob topic pin auth-refactor \
   --doc _kano/backlog/decisions/ADR-0001_use-jwt-for-authentication.md
 ```
 
@@ -421,7 +421,7 @@ kano-backlog topic pin auth-refactor \
 Collect relevant code snippets:
 
 ```bash
-kano-backlog topic add-snippet auth-refactor \
+kob topic add-snippet auth-refactor \
   --file src/auth/jwt.py \
   --start 10 \
   --end 25 \
@@ -440,7 +440,7 @@ kano-backlog topic add-snippet auth-refactor \
 Generate a summary from topic materials:
 
 ```bash
-kano-backlog topic distill auth-refactor
+kob topic distill auth-refactor
 ```
 
 **Expected Output:**
@@ -454,7 +454,7 @@ kano-backlog topic distill auth-refactor
 Change focus to a different topic:
 
 ```bash
-kano-backlog topic switch auth-refactor --agent kiro
+kob topic switch auth-refactor --agent kiro
 ```
 
 **Expected Output:**
@@ -468,7 +468,7 @@ kano-backlog topic switch auth-refactor --agent kiro
 Export topic data for external use:
 
 ```bash
-kano-backlog topic export-context auth-refactor --format json
+kob topic export-context auth-refactor --format json
 ```
 
 **Expected Output:**
@@ -494,7 +494,7 @@ kano-backlog topic export-context auth-refactor --format json
 Mark a topic as complete:
 
 ```bash
-kano-backlog topic close auth-refactor --agent kiro
+kob topic close auth-refactor --agent kiro
 ```
 
 **Expected Output:**
@@ -514,7 +514,7 @@ Commands for per-item execution cache to prevent agent drift.
 Create a workset for a task:
 
 ```bash
-kano-backlog workset init --item MYAPP-TSK-0001 --agent kiro
+kob workset init --item MYAPP-TSK-0001 --agent kiro
 ```
 
 **Expected Output:**
@@ -540,7 +540,7 @@ _kano/backlog/worksets/MYAPP-TSK-0001/
 Retrieve the next uncompleted item from the plan:
 
 ```bash
-kano-backlog workset next --item MYAPP-TSK-0001
+kob workset next --item MYAPP-TSK-0001
 ```
 
 **Expected Output:**
@@ -556,7 +556,7 @@ Remaining: 3 of 5 tasks
 Identify decisions that should become ADRs:
 
 ```bash
-kano-backlog workset detect-adr --item MYAPP-TSK-0001
+kob workset detect-adr --item MYAPP-TSK-0001
 ```
 
 **Expected Output:**
@@ -575,7 +575,7 @@ Suggestion: Create ADR for this decision
 Move completed work from workset to canonical locations:
 
 ```bash
-kano-backlog workset promote --item MYAPP-TSK-0001 --agent kiro
+kob workset promote --item MYAPP-TSK-0001 --agent kiro
 ```
 
 **Expected Output:**
@@ -591,7 +591,7 @@ kano-backlog workset promote --item MYAPP-TSK-0001 --agent kiro
 Regenerate plan from updated acceptance criteria:
 
 ```bash
-kano-backlog workset refresh --item MYAPP-TSK-0001
+kob workset refresh --item MYAPP-TSK-0001
 ```
 
 **Expected Output:**
@@ -606,7 +606,7 @@ kano-backlog workset refresh --item MYAPP-TSK-0001
 Remove old worksets that are no longer needed:
 
 ```bash
-kano-backlog workset cleanup --ttl-hours 72 --dry-run
+kob workset cleanup --ttl-hours 72 --dry-run
 ```
 
 **Expected Output:**
@@ -620,7 +620,7 @@ Run without --dry-run to delete
 
 **Actually Delete:**
 ```bash
-kano-backlog workset cleanup --ttl-hours 72
+kob workset cleanup --ttl-hours 72
 ```
 
 **Expected Output:**
@@ -640,7 +640,7 @@ Commands for generating dashboards and reports.
 Generate Obsidian Dataview dashboards:
 
 ```bash
-kano-backlog view refresh --product my-app --agent kiro
+kob view refresh --product my-app --agent kiro
 ```
 
 **Expected Output:**
@@ -651,58 +651,39 @@ kano-backlog view refresh --product my-app --agent kiro
 ✓ Generated recent activity: _kano/backlog/products/my-app/views/RecentActivity.md
 ```
 
-### Generate Plain Markdown Report
+### Inspect Refreshed View Files
 
-Create a simple markdown report without Dataview queries:
+Inspect the refreshed view directory after running `kob view refresh`:
 
 ```bash
-kano-backlog view report --product my-app --format plain
+ls _kano/backlog/products/my-app/views
 ```
 
 **Expected Output:**
 ```
-✓ Generated report: _kano/backlog/products/my-app/reports/backlog-report.md
-
-Summary:
-- Total items: 15
-- Epics: 2
-- Features: 4
-- Tasks: 7
-- Bugs: 2
-- In Progress: 3
-- Ready: 4
-- Proposed: 8
+Dashboard.md
+ByState.md
+ByType.md
+RecentActivity.md
 ```
 
-### Generate JSON Export
+### Inspect Effective Product Configuration
 
-Export backlog data as JSON:
+Inspect the effective configuration for a product:
 
 ```bash
-kano-backlog view export --product my-app --format json
+kob config show --product my-app
 ```
 
 **Expected Output:**
-```json
-{
-  "product": "my-app",
-  "generated": "2024-01-15T12:00:00Z",
-  "summary": {
-    "total_items": 15,
-    "by_type": {
-      "epic": 2,
-      "feature": 4,
-      "task": 7,
-      "bug": 2
-    },
-    "by_state": {
-      "proposed": 8,
-      "ready": 4,
-      "in_progress": 3
-    }
-  },
-  "items": [...]
-}
+```
+# Project-Level Backlog Configuration
+[defaults]
+auto_refresh = true
+...
+[products.my-app]
+name = "my-app"
+...
 ```
 
 ---
@@ -715,7 +696,7 @@ Complete workflow from high-level initiative to concrete task:
 
 ```bash
 # 1. Create an Epic
-kano-backlog item create --type epic \
+kob item create --type epic \
   --title "User Authentication System" \
   --product my-app \
   --agent kiro
@@ -723,7 +704,7 @@ kano-backlog item create --type epic \
 # Output: Created MYAPP-EPC-0001
 
 # 2. Create a Feature under the Epic
-kano-backlog item create --type feature \
+kob item create --type feature \
   --title "JWT Token Management" \
   --parent MYAPP-EPC-0001 \
   --product my-app \
@@ -732,7 +713,7 @@ kano-backlog item create --type feature \
 # Output: Created MYAPP-FTR-0001
 
 # 3. Create a Task under the Feature
-kano-backlog item create --type task \
+kob item create --type task \
   --title "Implement JWT token generation" \
   --parent MYAPP-FTR-0001 \
   --product my-app \
@@ -741,7 +722,7 @@ kano-backlog item create --type task \
 # Output: Created MYAPP-TSK-0001
 
 # 4. Set Task to Ready with all required fields
-kano-backlog item set-ready MYAPP-TSK-0001 \
+kob workitem set-ready MYAPP-TSK-0001 \
   --product my-app \
   --context "Users need secure authentication tokens" \
   --goal "Generate JWT tokens with user claims" \
@@ -752,12 +733,12 @@ kano-backlog item set-ready MYAPP-TSK-0001 \
 # Output: Task moved to Ready state
 
 # 5. Start work with a workset
-kano-backlog workset init --item MYAPP-TSK-0001 --agent kiro
+kob workset init --item MYAPP-TSK-0001 --agent kiro
 
 # Output: Workset initialized
 
 # 6. Update state to InProgress
-kano-backlog item update-state MYAPP-TSK-0001 \
+kob workitem update-state MYAPP-TSK-0001 \
   --state InProgress \
   --agent kiro \
   --product my-app
@@ -765,12 +746,12 @@ kano-backlog item update-state MYAPP-TSK-0001 \
 # Output: State updated to InProgress
 
 # 7. Complete work and promote deliverables
-kano-backlog workset promote --item MYAPP-TSK-0001 --agent kiro
+kob workset promote --item MYAPP-TSK-0001 --agent kiro
 
 # Output: Deliverables promoted
 
 # 8. Update state to Done
-kano-backlog item update-state MYAPP-TSK-0001 \
+kob workitem update-state MYAPP-TSK-0001 \
   --state Done \
   --agent kiro \
   --product my-app
@@ -784,7 +765,7 @@ Handle a bug report from discovery to resolution:
 
 ```bash
 # 1. Create a Bug
-kano-backlog item create --type bug \
+kob item create --type bug \
   --title "JWT tokens expire too quickly" \
   --product my-app \
   --agent kiro
@@ -792,7 +773,7 @@ kano-backlog item create --type bug \
 # Output: Created MYAPP-BUG-0001
 
 # 2. Set Bug to Ready with investigation details
-kano-backlog item set-ready MYAPP-BUG-0001 \
+kob workitem set-ready MYAPP-BUG-0001 \
   --product my-app \
   --context "Users report being logged out after 5 minutes" \
   --goal "Fix token expiration to match 1-hour requirement" \
@@ -803,16 +784,16 @@ kano-backlog item set-ready MYAPP-BUG-0001 \
 # Output: Bug moved to Ready state
 
 # 3. Start work
-kano-backlog item update-state MYAPP-BUG-0001 \
+kob workitem update-state MYAPP-BUG-0001 \
   --state InProgress \
   --agent kiro \
   --product my-app
 
 # 4. Initialize workset for investigation
-kano-backlog workset init --item MYAPP-BUG-0001 --agent kiro
+kob workset init --item MYAPP-BUG-0001 --agent kiro
 
 # 5. Complete fix and update state
-kano-backlog item update-state MYAPP-BUG-0001 \
+kob workitem update-state MYAPP-BUG-0001 \
   --state Done \
   --agent kiro \
   --product my-app
@@ -824,29 +805,25 @@ Switch between different work areas:
 
 ```bash
 # 1. Create topic for authentication work
-kano-backlog topic create auth-work \
-  --description "Authentication system improvements" \
-  --agent kiro
+kob topic create auth-work --agent kiro
 
 # 2. Add relevant items
-kano-backlog topic add auth-work --item MYAPP-TSK-0001
-kano-backlog topic add auth-work --item MYAPP-BUG-0001
+kob topic add auth-work --item MYAPP-TSK-0001
+kob topic add auth-work --item MYAPP-BUG-0001
 
 # 3. Pin relevant ADRs
-kano-backlog topic pin auth-work \
+kob topic pin auth-work \
   --doc _kano/backlog/decisions/ADR-0001_use-jwt-for-authentication.md
 
 # 4. Work on authentication tasks...
 
 # 5. Switch to different topic
-kano-backlog topic create api-refactor \
-  --description "API endpoint refactoring" \
-  --agent kiro
+kob topic create api-refactor --agent kiro
 
-kano-backlog topic switch api-refactor --agent kiro
+kob topic switch api-refactor --agent kiro
 
 # 6. Later, switch back to authentication work
-kano-backlog topic switch auth-work --agent kiro
+kob topic switch auth-work --agent kiro
 
 # Output: Context loaded with all auth-related items and documents
 ```
@@ -857,12 +834,12 @@ Pass work between different agents:
 
 ```bash
 # Agent 1 (Kiro) creates and starts task
-kano-backlog item create --type task \
+kob item create --type task \
   --title "Add rate limiting to API" \
   --product my-app \
   --agent kiro
 
-kano-backlog item set-ready MYAPP-TSK-0010 \
+kob workitem set-ready MYAPP-TSK-0010 \
   --product my-app \
   --context "API needs protection from abuse" \
   --goal "Implement rate limiting middleware" \
@@ -870,25 +847,25 @@ kano-backlog item set-ready MYAPP-TSK-0010 \
   --acceptance-criteria "Max 100 requests per minute per IP" \
   --risks "Need Redis instance in production"
 
-kano-backlog item update-state MYAPP-TSK-0010 \
+kob workitem update-state MYAPP-TSK-0010 \
   --state InProgress \
   --agent kiro \
   --product my-app
 
 # Agent 1 adds progress note
-kano-backlog worklog append MYAPP-TSK-0010 \
+kob worklog append MYAPP-TSK-0010 \
   --message "Started implementation, Redis client configured" \
   --agent kiro \
   --product my-app
 
 # Agent 2 (Copilot) takes over
-kano-backlog worklog append MYAPP-TSK-0010 \
+kob worklog append MYAPP-TSK-0010 \
   --message "Continuing work from Kiro, implementing middleware" \
   --agent copilot \
   --product my-app
 
 # Agent 2 completes work
-kano-backlog item update-state MYAPP-TSK-0010 \
+kob workitem update-state MYAPP-TSK-0010 \
   --state Done \
   --agent copilot \
   --product my-app
@@ -900,7 +877,7 @@ Capture an important technical decision:
 
 ```bash
 # 1. Create ADR for the decision
-kano-backlog admin adr create \
+kob adr create \
   --title "Use Redis for rate limiting storage" \
   --product my-app \
   --agent kiro
@@ -911,13 +888,13 @@ kano-backlog admin adr create \
 # (Edit _kano/backlog/decisions/ADR-0003_use-redis-for-rate-limiting-storage.md)
 
 # 3. Link ADR to related task
-kano-backlog worklog append MYAPP-TSK-0010 \
+kob worklog append MYAPP-TSK-0010 \
   --message "Documented decision in ADR-0003" \
   --agent kiro \
   --product my-app
 
 # 4. Reference ADR in task notes
-kano-backlog workset init --item MYAPP-TSK-0010 --agent kiro
+kob workset init --item MYAPP-TSK-0010 --agent kiro
 # Add "See ADR-0003 for storage decision" to notes.md
 ```
 
@@ -958,7 +935,7 @@ Never start work on a Task or Bug without:
 - Testable acceptance criteria for verification
 - Identified risks and dependencies
 
-Use `item set-ready` to enforce this discipline.
+Use `workitem set-ready` to enforce this discipline.
 
 ### Keep Worklogs Append-Only
 
@@ -983,12 +960,12 @@ This provides clear traceability from high-level goals to concrete work.
 
 ## Getting Help
 
-For more information on any command:
+For more information on available commands:
 
 ```bash
-kano-backlog --help
-kano-backlog <command> --help
-kano-backlog <command> <subcommand> --help
+kob
+bash scripts/core/status.sh
+bash scripts/core/create-workitem.sh --help
 ```
 
 For detailed documentation:

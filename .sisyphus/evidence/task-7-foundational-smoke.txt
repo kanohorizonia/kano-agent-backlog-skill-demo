@@ -1,0 +1,30 @@
+Foundational native smoke coverage
+
+Build and test commands
+
+- `bash src/cpp/build/script/windows/build_windows_ninja_msvc_debug.sh`
+- `ctest --test-dir src/cpp/build/windows-ninja-msvc --output-on-failure`
+
+Covered paths
+
+- `backlog_core_smoke_test`
+  - frontmatter serialize/parse
+  - ready-gate validation
+  - state transition checks
+
+- `workitem_ops_smoke_test`
+  - native item creation
+  - ready-field population
+  - state transitions to `Ready` and `InProgress`
+  - worklog append
+
+- `cli_repo_smoke_test`
+  - `doctor`
+  - `config show`
+  - `config validate`
+  - `topic list`
+  - `workset list`
+
+Result
+
+- PASS: 3/3 native smoke tests passed through CTest

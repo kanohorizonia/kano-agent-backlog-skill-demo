@@ -1,0 +1,14 @@
+Canonical Windows build policy
+
+- Canonical build entrypoint: `bash src/cpp/build/script/windows/build_windows_ninja_msvc_debug.sh`
+- Native build helper: `src/cpp/build/script/common/windows_preset_helper.ps1`
+- Output binary: `src/cpp/build/windows-ninja-msvc/kano-backlog.exe`
+
+Alignment changes
+
+- `build.bat` no longer configures a separate Visual Studio generator build tree.
+- `build.bat` now delegates to the same PowerShell helper and Ninja-based build root used by the canonical script.
+
+Implication
+
+- Windows local builds now converge on one native output path instead of maintaining conflicting build entry behavior.

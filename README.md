@@ -1,7 +1,7 @@
 # kano-agent-backlog-skill-demo
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
+[![Native CLI](https://img.shields.io/badge/CLI-kob-blue.svg)](#quick-start)
 [![AI Agent Skills](https://img.shields.io/badge/AI-Agent%20Skills-brightgreen.svg)](https://github.com/topics/ai-agent)
 [![Multi-Agent](https://img.shields.io/badge/Multi--Agent-Collaboration-orange.svg)](https://github.com/topics/multi-agent)
 
@@ -23,7 +23,7 @@ This is the **0.0.3 release** of the **kano-agent-backlog-skill-demo** - an expe
 - ✅ **Stable vs runtime effective config artifacts**: `.kano/cache/effective_backlog_config.toml` and `.kano/cache/effective_runtime_backlog_config.toml`
 - ✅ **Local env auto-load**: default `env/local.secrets.env`, override via `--env-file` / `KANO_ENV_FILE`
 - ✅ **Gemini embeddings (google-genai)**: provider support + profile for `gemini-embedding-001`
-- ✅ **Release check Phase2 hardening**: `doctor` + `pytest` + topic smoke produces pinned reports under `_kano/backlog/topics/release-0-0-3/publish/`
+- ✅ **Release check Phase2 hardening**: `doctor` + native smoke verification + topic smoke produces pinned reports under `_kano/backlog/topics/release-0-0-3/publish/`
 - ✅ Core backlog item management (Epic, Feature, UserStory, Task, Bug)
 - ✅ Workset execution cache for per-item context
 - ✅ Topic-based context switching and grouping
@@ -34,11 +34,13 @@ This is the **0.0.3 release** of the **kano-agent-backlog-skill-demo** - an expe
 - ✅ Multi-agent coordination (Canonical + Adapters architecture)
 - ✅ Native support for Copilot, Codex, Claude, and Goose
 - ✅ CLI commands for all core operations
-- ✅ Property-based testing with Hypothesis
+- ✅ Native smoke coverage for active local CLI verification
 - 🚧 SQLite indexing (experimental)
 - 🚧 Embedding search foundations (cross-lingual requirement, per-model index strategy)
 
 ## Overview
+
+**Version file**: `VERSION` is now the repo-level source of truth for the kob foundation.
 
 **Current Status: Version 0.0.3**
 
@@ -55,7 +57,7 @@ This repository demonstrates an evolving approach to transform agent collaborati
 - ✅ Plain markdown and Obsidian Dataview dashboard generation
 - ✅ Multi-agent coordination through shared backlog
 - ✅ ADR (Architecture Decision Record) workflow
-- ✅ Property-based testing with Hypothesis
+- ✅ Native smoke coverage for active local CLI verification
 
 **What's Unstable/Incomplete:**
 - ⚠️ File formats and schemas (may change)
@@ -85,7 +87,13 @@ This repository demonstrates an evolving approach to transform agent collaborati
 ## Repository Structure
 
 ```
+├── VERSION                     # Repo-level kob foundation version
 ├── _kano/backlog/              # Main backlog directory (system of record)
+├── src/cpp/build/script/       # Native build/orchestration script tree
+├── script/                     # Normalized repo entrypoints (bootstrap/setup/test/cibuild)
+├── scripts/core/               # Repo-local kob operational entrypoints
+├── scripts/internal/           # Version + self-build/self-rebuild helpers
+├── scripts/lib/                # Shared shell helper libraries
 ├── skills/                     # Canonical sources (git submodules or local)
 │   ├── kano-agent-backlog-skill/         # **CANONICAL** (single source of truth)
 │   └── kano-commit-convention-skill/
@@ -128,8 +136,8 @@ This follows the "Self-contained skill stance" principle defined in [AGENTS.md](
 ### Prerequisites
 
 - AI agent with file system access (Amazon Kiro, Claude, ChatGPT, Cursor, Windsurf, etc.)
-- Python 3.10+ (required by `skills/kano-agent-backlog-skill/pyproject.toml`)
 - Git (for version control and submodules)
+- Native build prerequisites for your platform (the repo bootstrap/build scripts help install or verify them)
 - **Patience**: Expect things to break or change
 
 ### Quick Start
@@ -145,53 +153,56 @@ cd kano-agent-backlog-skill-demo
 git submodule update --init --recursive
 ```
 
-**3. Install the skill:**
+**3. Build the native CLI locally:**
 ```bash
-python -m pip install -e skills/kano-agent-backlog-skill
+bash .agents/skills/kano/kano-agent-backlog-skill/scripts/internal/self-build.sh debug
+bash .agents/skills/kano/kano-agent-backlog-skill/scripts/kob doctor
 ```
 
-**4. Verify installation:**
+The canonical implementation now lives under `.agents/skills/kano/kano-agent-backlog-skill/`, including the native C++ build tree and the `kob` launcher surface.
+
+**4. Kob foundation helpers:**
 ```bash
-kano-backlog --help
+bash .agents/skills/kano/kano-agent-backlog-skill/scripts/prerequisite.sh --help
+bash .agents/skills/kano/kano-agent-backlog-skill/scripts/internal/self-build.sh debug
+bash .agents/skills/kano/kano-agent-backlog-skill/scripts/internal/test.sh
+bash .agents/skills/kano/kano-agent-backlog-skill/scripts/core/doctor.sh
+bash .agents/skills/kano/kano-agent-backlog-skill/scripts/core/status.sh
+bash .agents/skills/kano/kano-agent-backlog-skill/scripts/core/list-topics.sh
+bash .agents/skills/kano/kano-agent-backlog-skill/scripts/core/list-worksets.sh
+bash .agents/skills/kano/kano-agent-backlog-skill/scripts/core/list-workitems.sh --product kano-agent-backlog-skill
+bash .agents/skills/kano/kano-agent-backlog-skill/scripts/core/read-workitem.sh KABSD-TSK-0001 --product kano-agent-backlog-skill
+bash .agents/skills/kano/kano-agent-backlog-skill/scripts/core/check-config.sh
+bash .agents/skills/kano/kano-agent-backlog-skill/scripts/core/create-workitem.sh --help
+bash .agents/skills/kano/kano-agent-backlog-skill/scripts/core/set-ready-fields.sh --help
+bash .agents/skills/kano/kano-agent-backlog-skill/scripts/core/create-topic.sh --help
+bash .agents/skills/kano/kano-agent-backlog-skill/scripts/core/switch-topic.sh --help
+bash .agents/skills/kano/kano-agent-backlog-skill/scripts/internal/show-version.sh
+bash .agents/skills/kano/kano-agent-backlog-skill/scripts/internal/bump-version.sh patch --dry-run
+bash .agents/skills/kano/kano-agent-backlog-skill/scripts/internal/create-tag.sh --from-version-file --dry-run
+bash .agents/skills/kano/kano-agent-backlog-skill/scripts/tags/list-tags.sh --latest
+bash .agents/skills/kano/kano-agent-backlog-skill/scripts/internal/self-build.sh debug
+bash .agents/skills/kano/kano-agent-backlog-skill/scripts/internal/self-rebuild.sh debug
 ```
 
-**5. Explore the demo backlog:**
+**5. Verify installation:**
+```bash
+bash .agents/skills/kano/kano-agent-backlog-skill/scripts/kob
+```
+
+**6. Explore the demo backlog:**
 ```bash
 # Refresh views (lists items in dashboards)
-kano-backlog view refresh --product kano-agent-backlog-skill --agent demo
+bash .agents/skills/kano/kano-agent-backlog-skill/scripts/kob view refresh --product kano-agent-backlog-skill --agent demo
 
 # View dashboard
-kano-backlog view refresh --product kano-agent-backlog-skill --agent demo
+bash .agents/skills/kano/kano-agent-backlog-skill/scripts/kob view refresh --product kano-agent-backlog-skill --agent demo
 
 # List topics
-kano-backlog topic list
+bash .agents/skills/kano/kano-agent-backlog-skill/scripts/kob topic list
 
 # List worksets
-kano-backlog workset list
-```
-
-### Optional: Dev Dependencies
-
-For development or embedding search features:
-```bash
-python -m pip install -e "skills/kano-agent-backlog-skill[dev]"
-```
-
-Note: FAISS and sentence-transformers may require platform-specific installation.
-
-### Prerequisite install (recommended)
-
-Install the skill (and its CLI dependencies) into your environment once:
-
-```powershell
-python -m pip install -e skills/kano-agent-backlog-skill
-```
-
-Optional dev/embedding dependencies can be added with extras:
-
-```powershell
-python -m pip install -e "skills/kano-agent-backlog-skill[dev]"
-# Install FAISS / sentence-transformers manually per platform before running embedding workflows.
+bash .agents/skills/kano/kano-agent-backlog-skill/scripts/kob workset list
 ```
 
 ### Verify Installation
@@ -199,9 +210,16 @@ python -m pip install -e "skills/kano-agent-backlog-skill[dev]"
 After installation, verify the CLI is available:
 
 ```bash
-kano-backlog --help
-kano-backlog workset --help
-kano-backlog topic --help
+bash .agents/skills/kano/kano-agent-backlog-skill/scripts/kob
+bash .agents/skills/kano/kano-agent-backlog-skill/scripts/kob workset list
+bash .agents/skills/kano/kano-agent-backlog-skill/scripts/kob topic list
+```
+
+For local repo-native verification, prefer the canonical skill path:
+
+```bash
+bash .agents/skills/kano/kano-agent-backlog-skill/scripts/kob doctor
+bash .agents/skills/kano/kano-agent-backlog-skill/scripts/kob workset list
 ```
 
 ### Agent-First Setup
@@ -344,12 +362,12 @@ Worksets provide a focused, per-item execution context that prevents agent drift
 
 **Initialize a workset:**
 ```bash
-kano-backlog workset init --item TASK-0042 --agent my-agent --ttl-hours 72
+kob workset init --item TASK-0042 --agent my-agent --ttl-hours 72
 ```
 
 **Get next action from plan:**
 ```bash
-kano-backlog workset next --item TASK-0042
+kob workset next --item TASK-0042
 ```
 
 This command is the workset's "keep me on track" primitive:
@@ -357,35 +375,35 @@ This command is the workset's "keep me on track" primitive:
 - It returns the *first unchecked* checkbox item (`- [ ] ...`).
 - If everything is checked, it prints a completion message.
 
-It does not automatically mark anything as done; you check items off in `plan.md` as you complete them, then run `kano-backlog workset next` again to get the next step. Use `--format json` if you want structured output for tooling/agent automation.
+It does not automatically mark anything as done; you check items off in `plan.md` as you complete them, then run `kob workset next` again to get the next step. Use `--format json` if you want structured output for tooling/agent automation.
 
 **Refresh from canonical files:**
 ```bash
-kano-backlog workset refresh --item TASK-0042 --agent my-agent
+kob workset refresh --item TASK-0042 --agent my-agent
 ```
 
 **Promote deliverables to canonical artifacts:**
 ```bash
-kano-backlog workset promote --item TASK-0042 --agent my-agent
+kob workset promote --item TASK-0042 --agent my-agent
 # Dry run to preview
-kano-backlog workset promote --item TASK-0042 --agent my-agent --dry-run
+kob workset promote --item TASK-0042 --agent my-agent --dry-run
 ```
 
 **Detect ADR candidates in notes:**
 ```bash
-kano-backlog workset detect-adr --item TASK-0042
+kob workset detect-adr --item TASK-0042
 ```
 
 **List all worksets:**
 ```bash
-kano-backlog workset list
+kob workset list
 ```
 
 **Cleanup expired worksets:**
 ```bash
-kano-backlog workset cleanup --ttl-hours 72
+kob workset cleanup --ttl-hours 72
 # Dry run to preview
-kano-backlog workset cleanup --ttl-hours 72 --dry-run
+kob workset cleanup --ttl-hours 72 --dry-run
 ```
 
 #### Agent Workflow with Worksets
@@ -423,7 +441,7 @@ Current implementation (see `_kano/backlog/products/kano-agent-backlog-skill/ite
 
 - **manifest.json**: Topic metadata, seed items, pinned documents
 - **brief.md**: Stable, human-maintained brief (do not overwrite automatically)
-- **brief.generated.md**: Deterministic distilled brief (generated/overwritten by `kano-backlog topic distill`)
+- **brief.generated.md**: Deterministic distilled brief (generated/overwritten by `kob topic distill`)
 - **synthesis/**: Working outputs for distillation (derived)
 - **publish/**: Prepared write-backs / patch skeletons (derived)
 - **materials/**: Raw collected materials (snippets, links, extracts, logs)
@@ -440,39 +458,39 @@ Notes:
 
 **Create a topic:**
 ```bash
-kano-backlog topic create auth-refactor --agent my-agent
+kob topic create auth-refactor --agent my-agent
 ```
 
 **Add items to topic:**
 ```bash
-kano-backlog topic add auth-refactor --item TASK-0042
-kano-backlog topic add auth-refactor --item TASK-0043
+kob topic add auth-refactor --item TASK-0042
+kob topic add auth-refactor --item TASK-0043
 ```
 
 **Pin documents for context:**
 ```bash
-kano-backlog topic pin auth-refactor --doc _kano/backlog/decisions/ADR-0005-auth-strategy.md
+kob topic pin auth-refactor --doc _kano/backlog/decisions/ADR-0005-auth-strategy.md
 ```
 
 **Add code snippets to materials:**
 ```bash
-kano-backlog topic add-snippet auth-refactor --file src/auth.py --start 10 --end 25
+kob topic add-snippet auth-refactor --file src/auth.py --start 10 --end 25
 ```
 
 **Distill materials into brief:**
 ```bash
-kano-backlog topic distill auth-refactor
+kob topic distill auth-refactor
 ```
 
 **Audit decision write-back (writes a report into topic publish/):**
 ```bash
-kano-backlog topic decision-audit auth-refactor
-kano-backlog topic decision-audit auth-refactor --format json
+kob topic decision-audit auth-refactor
+kob topic decision-audit auth-refactor --format json
 ```
 
 **Write back a decision to a work item:**
 ```bash
-kano-backlog workitem add-decision KABSD-TSK-0001 \
+kob workitem add-decision KABSD-TSK-0001 \
   --decision "Use X over Y because ..." \
   --source "_kano/backlog/topics/auth-refactor/synthesis/decision-notes.md" \
   --agent my-agent \
@@ -481,30 +499,30 @@ kano-backlog workitem add-decision KABSD-TSK-0001 \
 
 **Switch active topic:**
 ```bash
-kano-backlog topic switch auth-refactor --agent my-agent
+kob topic switch auth-refactor --agent my-agent
 ```
 
 **Export context bundle:**
 ```bash
-kano-backlog topic export-context auth-refactor --format markdown
-kano-backlog topic export-context auth-refactor --format json
+kob topic export-context auth-refactor --format markdown
+kob topic export-context auth-refactor --format json
 ```
 
 **List all topics:**
 ```bash
-kano-backlog topic list --agent my-agent
+kob topic list --agent my-agent
 ```
 
 **Close a topic (enables TTL cleanup):**
 ```bash
-kano-backlog topic close auth-refactor --agent my-agent
+kob topic close auth-refactor --agent my-agent
 ```
 
 **Cleanup closed topics:**
 ```bash
-kano-backlog topic cleanup --ttl-days 14 --apply
+kob topic cleanup --ttl-days 14 --apply
 # Dry run to preview
-kano-backlog topic cleanup --ttl-days 14
+kob topic cleanup --ttl-days 14
 ```
 
 #### Agent Workflow with Topics
@@ -576,8 +594,8 @@ root = "/mnt/nas/shared-cache/backlog"
 
 **Example CLI override:**
 ```bash
-kano-backlog embedding build --product my-product --cache-root /mnt/nas/cache
-kano-backlog search query "authentication" --cache-root /mnt/nas/cache
+kob embedding build --product my-product --cache-root /mnt/nas/cache
+kob search query "authentication" --cache-root /mnt/nas/cache
 ```
 
 **Use cases:**
@@ -687,7 +705,7 @@ See the individual skill repositories for license information.
 **Backlog not found:**
 - Ensure you're in the repository root
 - Check `_kano/backlog/` directory exists
-- Initialize a product: `kano-backlog admin init --product my-product --agent my-agent`
+- Initialize a product: `kob admin init --product my-product --agent my-agent`
 
 **Agent asks for help:**
 - Point agent to `AGENTS.md` for guidelines

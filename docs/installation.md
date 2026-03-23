@@ -50,10 +50,11 @@ pip install kano-agent-backlog-skill
 **Verify installation:**
 
 ```bash
-kano-backlog --version
+bash scripts/internal/show-version.sh
+kob
 ```
 
-You should see the version number (e.g., `0.1.0`).
+You should see the repo version and the kob command usage output.
 
 ### Method 2: Install in a Virtual Environment (Best Practice)
 
@@ -77,7 +78,8 @@ source kano-env/bin/activate
 pip install kano-agent-backlog-skill
 
 # Verify installation
-kano-backlog --version
+bash scripts/internal/show-version.sh
+kob
 ```
 
 **Using conda:**
@@ -93,7 +95,8 @@ conda activate kano-env
 pip install kano-agent-backlog-skill
 
 # Verify installation
-kano-backlog --version
+bash scripts/internal/show-version.sh
+kob
 ```
 
 **Deactivating the environment:**
@@ -123,7 +126,8 @@ source .venv/bin/activate  # On Windows: .\.venv\Scripts\Activate.ps1
 pip install -e ".[dev]"
 
 # Verify installation
-kano-backlog --version
+bash scripts/internal/show-version.sh
+kob
 ```
 
 ## Optional Dependencies
@@ -185,7 +189,7 @@ pip install "kano-agent-backlog-skill[dev,vector]"
 After installation, validate your environment:
 
 ```bash
-kano-backlog doctor
+kob doctor
 ```
 
 This command checks:
@@ -227,7 +231,7 @@ pip install kano-agent-backlog-skill==0.2.0
 ```bash
 pip show kano-agent-backlog-skill
 # or
-kano-backlog --version
+bash scripts/internal/show-version.sh
 ```
 
 ## Uninstalling
@@ -242,7 +246,7 @@ pip uninstall kano-agent-backlog-skill
 
 ## Troubleshooting
 
-### Issue: `kano-backlog: command not found`
+### Issue: `kob: command not found`
 
 **Cause:** The installation directory is not in your PATH.
 
@@ -296,10 +300,10 @@ pip list | grep kano
 
 ```bash
 # Initialize a new backlog
-kano-backlog backlog init --product my-project --agent your-name
+kob admin init --product my-project --agent your-name
 
 # Or run doctor to diagnose
-kano-backlog doctor
+kob doctor
 ```
 
 ### Issue: Python version too old
@@ -378,7 +382,7 @@ pip install "kano-agent-backlog-skill[vector]"
   # Vector search features will not be available
   ```
 
-### Issue: `kano-backlog doctor` reports configuration errors
+### Issue: `kob doctor` reports configuration errors
 
 **Cause:** Invalid YAML syntax or missing required fields in config files.
 
@@ -394,7 +398,7 @@ python -c "import tomli; tomli.load(open('.kano/backlog_config.toml', 'rb'))"
 
 # Reset to default config
 rm .kano/backlog_config.toml
-kano-backlog backlog init --product my-project --agent your-name
+kob admin init --product my-project --agent your-name
 ```
 
 ### Issue: Write permission errors
@@ -479,7 +483,7 @@ If you encounter issues not covered here:
 
 1. **Run diagnostics:**
    ```bash
-   kano-backlog doctor
+   kob doctor
    ```
 
 2. **Check the Quick Start Guide:** [quick-start.md](quick-start.md)
@@ -498,7 +502,7 @@ Once installation is complete:
 
 2. **Configure your environment:** [configuration.md](configuration.md) - Set up profiles and preferences
 
-3. **Explore the CLI:** Run `kano-backlog --help` to see all available commands
+3. **Explore the CLI:** Run `kob` to see the available command surface
 
 4. **Read the workflow guide:** See [AGENTS.md](../AGENTS.md) for best practices on using the backlog system
 

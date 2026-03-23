@@ -1,0 +1,33 @@
+Native command matrix
+
+- Build path: `bash src/cpp/build/script/windows/build_windows_ninja_msvc_debug.sh`
+  - Result: PASS
+  - Binary: `src/cpp/build/windows-ninja-msvc/kano-backlog.exe`
+
+- Native binary doctor: `src/cpp/build/windows-ninja-msvc/kano-backlog.exe doctor`
+  - Result: PASS
+
+- Repo-root bash launcher: `bash kano-backlog doctor`
+  - Result: PASS
+  - Runtime path: native binary only
+
+- Repo-root batch launcher: `powershell -NoProfile -ExecutionPolicy Bypass -Command ".\kano-backlog.bat doctor"`
+  - Result: PASS
+  - Runtime path: native binary only
+
+- Agent-wrapper bash launcher: `bash .agents/skills/kano/kano-agent-backlog-skill/scripts/kano-backlog doctor`
+  - Result: PASS
+  - Runtime path: native binary only
+
+- Agent-wrapper batch launcher: `powershell -NoProfile -ExecutionPolicy Bypass -Command ".\.agents\skills\kano\kano-agent-backlog-skill\scripts\kano-backlog.bat doctor"`
+  - Result: PASS
+  - Runtime path: native binary only
+
+- Sandbox workitem list: `src/cpp/build/windows-ninja-msvc/kano-backlog.exe workitem list --product guide-test --backlog-root _kano/backlog_sandbox/_tmp_tests/guide_test_backlog`
+  - Result: PASS
+
+Conclusion
+
+- Normal local repo usage now has native bash and Windows launcher paths.
+- The previously Python-based `.agents/.../scripts/kano-backlog` wrapper now launches the native binary.
+- No active Python runtime path was observed in the verified local entrypoints above.

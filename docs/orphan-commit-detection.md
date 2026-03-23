@@ -19,7 +19,7 @@
 
    Recommended actions:
    1. Create a backlog item:
-      kano-backlog item create --type task --title "..."
+      kob item create --type task --title "..."
 
    2. Update commit message to include ticket ID:
       git commit --amend -m "KABSD-TSK-XXXX: your message"
@@ -35,7 +35,7 @@ Message: Add binary vector storage support...
 💡 Suggested action: Create a TASK item
 
 Quick commands:
-  kano-backlog item create --type task --title "..."
+  kob item create --type task --title "..."
 ```
 
 **啟用方式：**
@@ -48,7 +48,7 @@ git config core.hooksPath .githooks
 
 **檢查最近的 commits：**
 ```bash
-kano-backlog orphan check --days 7
+kob orphan check --days 7
 ```
 
 輸出：
@@ -71,7 +71,7 @@ Commit Analysis (last 7 days)
 
 **建議 ticket 類型：**
 ```bash
-kano-backlog orphan suggest b68c065
+kob orphan suggest b68c065
 ```
 
 輸出：
@@ -84,7 +84,7 @@ Message: feat(cli): add orphan detection...
   Title: add orphan detection
 
 Create ticket:
-  kano-backlog item create \
+  kob item create \
     --type task \
     --title "add orphan detection" \
     --product kano-agent-backlog-skill
@@ -111,7 +111,7 @@ Create ticket:
 
 ```bash
 # 1. 先開票
-kano-backlog item create --type task --title "Add feature X"
+kob item create --type task --title "Add feature X"
 # Output: KABSD-TSK-0318
 
 # 2. 開發
@@ -132,7 +132,7 @@ git commit -m "feat: add feature X"
 # ⚠️  Hook 警告你！
 
 # 2. 立刻補票
-kano-backlog item create --type task --title "Add feature X"
+kob item create --type task --title "Add feature X"
 # Output: KABSD-TSK-0318
 
 # 3. 修改 commit message
@@ -143,14 +143,14 @@ git commit --amend -m "KABSD-TSK-0318: add feature X"
 
 ```bash
 # 1. 檢查本週的 orphan commits
-kano-backlog orphan check --days 7
+kob orphan check --days 7
 
 # 2. 為每個 commit 建議 ticket
-kano-backlog orphan suggest <hash>
+kob orphan suggest <hash>
 
 # 3. 批次創建 tickets
 for hash in $(git log --oneline --since="7 days ago" | cut -d' ' -f1); do
-  kano-backlog orphan suggest $hash
+  kob orphan suggest $hash
 done
 
 # 4. Interactive rebase 更新 commit messages
@@ -191,7 +191,7 @@ git commit -m "feat(vector): add binary storage"
 ⚠️  WARNING: No backlog item ID found
 
 # 立刻補票
-kano-backlog item create --type task --title "Binary storage"
+kob item create --type task --title "Binary storage"
 # Output: KABSD-TSK-0315
 
 # 修改 commit
@@ -259,7 +259,7 @@ done
 
 ### 完整文件
 - `.githooks/README.md` - Git hooks 使用指南
-- `kano-backlog orphan --help` - CLI 命令說明
+- `kob orphan --help` - CLI 命令說明
 
 ### 快速參考
 
@@ -270,12 +270,12 @@ git config core.hooksPath .githooks
 
 **檢查 orphan commits：**
 ```bash
-kano-backlog orphan check --days 7
+kob orphan check --days 7
 ```
 
 **建議 ticket 類型：**
 ```bash
-kano-backlog orphan suggest <commit-hash>
+kob orphan suggest <commit-hash>
 ```
 
 **暫時關閉 hook：**

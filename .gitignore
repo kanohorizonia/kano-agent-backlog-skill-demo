@@ -109,3 +109,9 @@ test_backlog/
 /.opencode/oh-my-opencode.json.bak.2026-01-24T23-47-15-587Z
 # Local config backups
 .kano/backlog_config.toml.bak
+.kano/tmp/git/plans/default-plan.json
+.vscode/settings.json
+.kano/tmp/git/plans/ignore-merged-root.gitignore
+.kano/tmp/git/provider-prompts/plan-fill-structured-20260313T174938Z-577dd930.md
+.kano/tmp/git/provider-prompts/plan-fill-structured-20260313T175217Z-32c3a040.md
+.kano/tmp/git/provider-prompts/plan-fill-structured-20260313T175931Z-d2ff7e21.md

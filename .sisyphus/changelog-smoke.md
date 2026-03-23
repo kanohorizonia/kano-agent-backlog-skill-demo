@@ -1,0 +1,316 @@
+## [0.0.3] - 2026-03-11
+
+- KABSD-BUG-0001: workitem_update_state crashes: args.model attribute missing
+- KABSD-BUG-0002: Add dependency links between FTR-0013 and FTR-0015
+- KABSD-BUG-0003: Snapshot reports render raw template blocks (nested each/if/unless)
+- KABSD-BUG-0004: Product snapshots include stubs from other skills
+- KABSD-BUG-0005: Views: dashboards emit VCS metadata per FTR-0039
+- KABSD-BUG-0006: CLI: avoid Windows UnicodeEncodeError on non-UTF8 terminals
+- KABSD-BUG-0007: Core: accept Planned as a valid ItemState
+- KABSD-BUG-0013: workitem set-ready command missing --agent option
+- KABSD-BUG-0016: yaml-cpp configuration failure during CMake FetchContent in Phase 1 migration
+- KABSD-EPIC-0001: Kano Agent Backlog Skill Demo
+- KABSD-EPIC-0002: Milestone 0.0.1 (Core demo)
+- KABSD-EPIC-0009: CLI Namespace Refactoring: Skill-Scoped Naming Convention
+- KABSD-EPIC-0012: Official Documentation Website with GitHub Pages
+- KABSD-FTR-0001: Local-first backlog system
+- KABSD-FTR-0002: Agent tool invocation audit logging system
+- KABSD-FTR-0003: Self-contained skill bootstrap and automation
+- KABSD-FTR-0004: Backlog config system and process profiles
+- KABSD-FTR-0005: Verify agent compliance
+- KABSD-FTR-0007: Optional DB index and embedding/RAG pipeline
+- KABSD-FTR-0009: Backlog Artifact System
+- KABSD-FTR-0010: Monorepo Platform Migration
+- KABSD-FTR-0017: Traceability: Commit Refs → Worklog Backfill
+- KABSD-FTR-0019: Refactor: kano-backlog-core + CLI/Server/GUI facades
+- KABSD-FTR-0020: Multi-agent collaboration modes (local single repo / local multi repo via worktree / remote)
+- KABSD-FTR-0022: Backlog Quality Linter (Agent Discipline)
+- KABSD-FTR-0025: Unified CLI for All Backlog Operations
+- KABSD-FTR-0028: Refactor kano-agent-backlog-skill scripts into a single CLI entry + library modules
+- KABSD-FTR-0034: Rename CLI and Python Packages to Skill-Scoped Names
+- KABSD-FTR-0035: Restructure Command Tree with Consistent Domain Naming
+- KABSD-FTR-0036: Document Kano Namespace Reservation for Umbrella CLI
+- KABSD-FTR-0037: Topic Lifecycle and Materials Buffer System
+- KABSD-FTR-0038: Repo Snapshot + Evidence-driven Reports
+- KABSD-FTR-0039: Reproducible docs metadata (VCS-agnostic; remove timestamps)
+- KABSD-FTR-0040: Topic Spec Support
+- KABSD-FTR-0042: Embedding providers, tokenizers, and benchmark harness
+- KABSD-FTR-0043: Topic Templates and Archetypes
+- KABSD-FTR-0044: Lightweight Topic Cross-References
+- KABSD-FTR-0045: Topic Snapshots and Checkpoints
+- KABSD-FTR-0046: Topic Merge and Split Operations
+- KABSD-FTR-0057: Quartz Documentation Pipeline
+- KABSD-FTR-0058: Multi-corpus hybrid search (backlog + repo)
+- KABSD-FTR-0059: Ready Gate Validation and Enforcement
+- KABSD-FTR-0060: ID generation race condition prevention
+- KABSD-FTR-0061: Unified indexing architecture (kano_backlog_embedding module)
+- KABSD-FTR-0063: Simplify multi-product config with project-level .kano/config.toml
+- KABSD-FTR-0065: Improve ID allocation robustness and prevent ID collisions
+- KABSD-TSK-0001: Create project-backlog skill
+- KABSD-TSK-0002: Create Obsidian Base demo views
+- KABSD-TSK-0003: Normalize migrated backlog items for demo
+- KABSD-TSK-0004: Add trash bin tool for backlog files
+- KABSD-TSK-0005: Add fs wrappers for demo tools
+- KABSD-TSK-0006: Define audit log schema and redaction rules
+- KABSD-TSK-0007: Prototype tool invocation logger with redaction
+- KABSD-TSK-0008: Implement log rotation and retention
+- KABSD-TSK-0009: Implement backlog scaffold initializer script
+- KABSD-TSK-0011: Seed demo backlog items and views
+- KABSD-TSK-0012: Document self-contained setup and bootstrap scripts
+- KABSD-TSK-0013: Integrate audit logging into skill scripts
+- KABSD-TSK-0014: Enhance audit logging config and wrapper coverage
+- KABSD-TSK-0015: Remove demo tool wrappers and use skill scripts directly
+- KABSD-TSK-0016: Restrict skill scripts to _kano/backlog paths
+- KABSD-TSK-0017: Define config root layout and baseline config file
+- KABSD-TSK-0018: Add config loader for skill scripts
+- KABSD-TSK-0019: Define log verbosity and debug config keys
+- KABSD-TSK-0020: Wire logging scripts to config verbosity
+- KABSD-TSK-0021: Design process profile schema
+- KABSD-TSK-0022: Draft initial process profiles (Agile/Scrum/CMMI)
+- KABSD-TSK-0023: Ship built-in process definition files
+- KABSD-TSK-0024: Add config selector for process profile
+- KABSD-TSK-0025: Define backlog sandbox path and guardrails
+- KABSD-TSK-0026: Update test scripts to use backlog sandbox
+- KABSD-TSK-0027: Add user story validation test script
+- KABSD-TSK-0028: Ignore demo artifacts in git
+- KABSD-TSK-0029: Refresh demo dashboard views
+- KABSD-TSK-0030: Require explicit agent identity in script worklogs
+- KABSD-TSK-0031: Update documentation files
+- KABSD-TSK-0032: Generate epic index with task states
+- KABSD-TSK-0033: Generalize index generator for any item
+- KABSD-TSK-0034: Show state labels for all index items and drop epic aliases
+- KABSD-TSK-0035: Verify agent compliance with skill workflow
+- KABSD-TSK-0036: Sync parent state from child status changes
+- KABSD-TSK-0038: Review and improve config system implementation
+- KABSD-TSK-0039: Add config access helpers and defaults loader
+- KABSD-TSK-0040: Document config defaults and env override rules
+- KABSD-TSK-0041: Add lightweight config validation
+- KABSD-TSK-0042: Add process profile template and document built-ins
+- KABSD-TSK-0043: Add Jira process profile and align schema docs
+- KABSD-TSK-0044: Implement auto-assign owner when moving to InProgress
+- KABSD-TSK-0045: Implement conflict guard for InProgress items
+- KABSD-TSK-0046: Define DB index schema (items, links, worklog, decisions)
+- KABSD-TSK-0047: Implement sqlite indexer (import + rebuild + incremental)
+- KABSD-TSK-0048: Add config keys for DB index backend selection
+- KABSD-TSK-0049: Document file-first + DB index architecture and trade-offs
+- KABSD-TSK-0050: Document index config, artifact paths, and rebuild workflow
+- KABSD-TSK-0051: Extend validate_userstories to cover DB index and embeddings stories
+- KABSD-TSK-0052: Default SQLite index artifacts to _kano/backlog/_index and gitignore
+- KABSD-TSK-0053: Support sandbox backlog-root mode in SQLite indexer config resolution
+- KABSD-TSK-0054: Add sqlite index query CLI with presets and safe --sql
+- KABSD-TSK-0055: Generate Markdown views from SQLite index queries
+- KABSD-TSK-0056: Define embedding chunking + metadata schema for backlog items
+- KABSD-TSK-0057: Prototype local embedding index writer (no provider dependency)
+- KABSD-TSK-0058: agent compliance test
+- KABSD-TSK-0059: ULID vs UUIDv7 comparison document
+- KABSD-TSK-0060: Migration plan: add uid to existing items
+- KABSD-TSK-0061: ID resolver spec and design
+- KABSD-TSK-0062: Collision report and resolver CLI
+- KABSD-TSK-0063: Make generate_view use SQLite index when available (fallback to file scan)
+- KABSD-TSK-0064: Unify dashboard generation: auto use SQLite index with file-scan fallback
+- KABSD-TSK-0065: Replace deprecated DBIndex dashboards with demo DBIndex/NoDBIndex generators and docs
+- KABSD-TSK-0066: Introduce milestone epics 0.0.1/0.0.2 and regroup backlog items
+- KABSD-TSK-0067: Define skill versioning policy (ADR) and close MVP epic
+- KABSD-TSK-0068: Add skill version command and changelog
+- KABSD-TSK-0069: Move demo view generator out of skill scripts
+- KABSD-TSK-0070: Implement workitem_attach_artifact.py
+- KABSD-TSK-0071: Setup artifacts directory and gitignore
+- KABSD-TSK-0072: Restore generate_demo_views as self-contained skill script
+- KABSD-TSK-0074: Organize skill scripts into grouped CLI wrappers and clarify terminology
+- KABSD-TSK-0076: Rename backlog scripts to prefixed names and update references
+- KABSD-TSK-0078: Fix SQLite index schema mismatch (missing source_path)
+- KABSD-TSK-0079: Create context.py for product-aware path resolution
+- KABSD-TSK-0080: Update bootstrap_init_backlog.py for multi-product support
+- KABSD-TSK-0081: Execute directory restructuring for monorepo platform
+- KABSD-TSK-0082: Update config_loader.py for multi-product roots
+- KABSD-TSK-0084: Update Indexer and Resolver for product isolation
+- KABSD-TSK-0085: Initialize kano-commit-convention-skill and verify
+- KABSD-TSK-0086: Implement functional task dependency validation in workitem_update_state.py
+- KABSD-TSK-0087: Initialize backlog scaffold from active process profile
+- KABSD-TSK-0088: Add process_linter to validate profile-based folder scaffolds
+- KABSD-TSK-0104: Evaluate integrating working memory on disk into Kano Backlog
+- KABSD-TSK-0105: Implement Git VCS Adapter
+- KABSD-TSK-0106: Implement Perforce VCS Adapter
+- KABSD-TSK-0107: Implement SVN VCS Adapter
+- KABSD-TSK-0108: Implement query_commits.py Query Tool
+- KABSD-TSK-0109: Implement Commit Timeline View Generator
+- KABSD-TSK-0111: Implement SQLite Schema Migration Framework
+- KABSD-TSK-0115: Define core interfaces and module boundaries
+- KABSD-TSK-0116: Plan CLI migration to thin wrappers
+- KABSD-TSK-0117: Design server facade layering (HTTP/MCP)
+- KABSD-TSK-0118: Design local multi-agent collaboration: single repo
+- KABSD-TSK-0119: Design local multi-agent collaboration: multi repo via Git worktree
+- KABSD-TSK-0120: Design remote multi-agent collaboration
+- KABSD-TSK-0123: Remediate non-English content in backlog (ADRs/items) to English
+- KABSD-TSK-0124: 'Research: Comparative Performance and Deployment of SQLite-Vec vs FAISS vs
+- KABSD-TSK-0125: Implement kano-backlog-core: Config and Canonical modules
+- KABSD-TSK-0126: Improve process profile migration with original type preservation
+- KABSD-TSK-0127: Implement kano-backlog-core Phase 2: Derived and Refs modules
+- KABSD-TSK-0130: Consider Mermaid diagrams as context-engineering artifacts for agent attention
+- KABSD-TSK-0132: Clarify & Spec — Workset vs GraphRAG / Context Graph Responsibilities (No Conflict)
+- KABSD-TSK-0136: Fix gitignore for derived data compliance
+- KABSD-TSK-0145: Add prerequisite install script for Python deps (self-contained skill)
+- KABSD-TSK-0146: Clarify config: replace mode.role with mode.skill_developer + persona
+- KABSD-TSK-0147: Persona-aware project summary generation in view_refresh_dashboards
+- KABSD-TSK-0148: Deterministic persona reports (developer/pm/qa) for project status
+- KABSD-TSK-0149: Optional LLM analysis appended to deterministic persona reports
+- KABSD-TSK-0150: Add --all-personas to view_refresh_dashboards
+- KABSD-TSK-0151: Accept ADR-0011 and ADR-0012 for Workset Architecture
+- KABSD-TSK-0152: Resolve workset directory layout inconsistency
+- KABSD-TSK-0153: Verify canonical_schema.sql existence and consistency
+- KABSD-TSK-0157: Add kano doctor command for prereqs and init checks
+- KABSD-TSK-0158: Add kano item create command
+- KABSD-TSK-0159: Add kano item update-state command
+- KABSD-TSK-0160: Add kano item validate command for Ready gate
+- KABSD-TSK-0161: Add kano view refresh command
+- KABSD-TSK-0162: Create kano_backlog_ops package with use-case stubs
+- KABSD-TSK-0163: Implement kano_backlog_ops.workitem functions
+- KABSD-TSK-0164: Implement kano_backlog_ops.view functions
+- KABSD-TSK-0165: Add deprecation warnings to scripts/backlog/*.py
+- KABSD-TSK-0166: Implement kano backlog index build|refresh subcommands
+- KABSD-TSK-0169: Implement kano backlog sandbox init subcommand
+- KABSD-TSK-0173: Sync SKILL.md with current kano CLI implementation
+- KABSD-TSK-0175: Remove legacy CLI aliases; make SKILL help-driven
+- KABSD-TSK-0176: Rename scripts/kano to scripts/kano-backlog
+- KABSD-TSK-0177: Rename kano_cli package to kano_backlog_cli
+- KABSD-TSK-0178: Update pyproject.toml entry points and package references
+- KABSD-TSK-0179: Add deprecated kano wrapper script with migration warning
+- KABSD-TSK-0180: Rename item command group to workitem
+- KABSD-TSK-0181: Reorganize backlog subcommand to admin group
+- KABSD-TSK-0182: Update all documentation and SKILL.md for new CLI structure
+- KABSD-TSK-0183: Create ADR-0016 for Skill-Scoped CLI Namespace Convention
+- KABSD-TSK-0184: Update ADR-0013 to reference skill-scoped CLI naming
+- KABSD-TSK-0185: Normalize work item type labels to singular
+- KABSD-TSK-0186: Clean up legacy project roots (_index, _logs, sandboxes) and align scripts
+- KABSD-TSK-0189: Ensure worklog entries record model (default unknown) and warn when missing
+- KABSD-TSK-0190: Topic lifecycle + materials buffer (workset merge)
+- KABSD-TSK-0191: Define TOML config schema and migration strategy
+- KABSD-TSK-0192: Implement TOML parser with deep-merge and validation
+- KABSD-TSK-0193: Implement URI compilation from human-friendly config fields
+- KABSD-TSK-0194: Add CLI commands: config show and config validate
+- KABSD-TSK-0195: Build JSON to TOML migration tool with validation
+- KABSD-TSK-0196: Auto-export effective config to _index
+- KABSD-TSK-0197: Flatten .cache and remove _index folder
+- KABSD-TSK-0198: kano-backlog CLI: use TOML defaults for product resolution
+- KABSD-TSK-0199: Implement missing kano_backlog_ops.workitem functions (list/get/sync/refresh)
+- KABSD-TSK-0202: Implement snapshot packs: folder-based, VCS metadata, no timestamps
+- KABSD-TSK-0203: Consolidate analysis and snapshots; remove legacy root views
+- KABSD-TSK-0204: Clarify 'kano workset next' purpose in README
+- KABSD-TSK-0205: Make skill README standalone-focused
+- KABSD-TSK-0206: Make skill README more agent-first
+- KABSD-TSK-0208: Reframe vector index backend research as pluggable backend (KABSD-TSK-0124)
+- KABSD-TSK-0209: Add link integrity validator for backlog refs
+- KABSD-TSK-0297: Gitignore: ignore product _trash directories
+- KABSD-TSK-0210: Relax model attribution warnings for worklog commands
+- KABSD-TSK-0212: Add backlog-root override flag for sandbox operations
+- KABSD-TSK-0213: Fix view refresh VcsMeta branch mismatch
+- KABSD-TSK-0217: Clarify & Spec — Workset vs GraphRAG / Context Graph Responsibilities (No Conflict)
+- KABSD-TSK-0221: Clarify & Spec — Workset vs GraphRAG / Context Graph Responsibilities (No Conflict)
+- KABSD-TSK-0223: Add UID-based duplicate ID validator and auto-remap
+- KABSD-TSK-0224: Add admin items trash command
+- KABSD-TSK-0232: Add conflict handling policy to config and skill
+- KABSD-TSK-0233: Implement chunking MVP per token budget spec
+- KABSD-TSK-0234: Add CLI command to update work item parent
+- KABSD-TSK-0235: Clarify Epic/Feature/UserStory/Task ticketing guidance in SKILL
+- KABSD-TSK-0236: Add ticketing guidance to conventions via CLI
+- KABSD-TSK-0241: Implement embedding adapter interface and result types
+- KABSD-TSK-0242: Add embedding adapter factory and config resolver
+- KABSD-TSK-0243: Implement noop embedding adapter and telemetry tests
+- KABSD-TSK-0244: Implement tiktoken tokenizer adapter (optional dependency)
+- KABSD-TSK-0245: Implement HuggingFace tokenizer adapter (optional dependency)
+- KABSD-TSK-0246: Define model max-token window policy and overrides
+- KABSD-TSK-0255: Design topic template schema and storage structure
+- KABSD-TSK-0256: Add OpenCode skill wrappers pointing to canonical SKILL.md
+- KABSD-TSK-0257: Implement repo-shared active topic state (lock-free)
+- KABSD-TSK-0258: Improve topic distill brief items listing
+- KABSD-TSK-0259: Document topic snapshot retention policy (keep latest)
+- KABSD-TSK-0260: Implement sqlite vector backend MVP wiring
+- KABSD-TSK-0261: Implement deterministic benchmark harness for chunking/embedding/vector
+- KABSD-TSK-0263: Implement topic merge: merge embedding-preprocessing-and-vector-backend-research and phase-2
+- KABSD-TSK-0264: Add decision audit report for topics
+- KABSD-TSK-0265: Add decision write-back command for workitems
+- KABSD-TSK-0267: Prepare 0.0.2 release notes and bump demo version
+- KABSD-TSK-0268: Make brief.generated.md deterministic-only; keep templates in brief.md
+- KABSD-TSK-0269: Omit [model=unknown] in Worklog entries
+- KABSD-TSK-0271: Close out SQLite indexing + embedding search foundations
+- KABSD-TSK-0282: Add MVP chunking tests (ASCII, long English, CJK)
+- KABSD-TSK-0283: Add tiktoken adapter integration tests and fallback verification
+- KABSD-TSK-0284: Implement embedding E2E pipeline integration function (chunk-embed-upsert)
+- KABSD-TSK-0285: Add CLI commands for embedding pipeline (build/query/status)
+- KABSD-TSK-0286: Verify and populate benchmark corpus fixtures (English + CJK samples)
+- KABSD-TSK-0287: Document embedding pipeline config schema in references
+- KABSD-TSK-0288: Close out InProgress embedding tasks and update parent USR-0029 state
+- KABSD-TSK-0292: Multi-repo Checkout and Workspace Layout
+- KABSD-TSK-0293: Cross-repo Push with GitHub Token Setup
+- KABSD-TSK-0294: Content Cook Strategy with Manifest
+- KABSD-TSK-0295: Release Trigger Workflow
+- KABSD-TSK-0298: Implement backlog corpus chunks DB (items + ADRs + topics)
+- KABSD-TSK-0299: Implement repo corpus chunks DB (docs + code)
+- KABSD-TSK-0300: Add repo corpus embedding build and hybrid search
+- KABSD-TSK-0301: Document multi-corpus search usage and rebuild commands
+- KABSD-TSK-0302: Document Ready gate workflow and validation behavior
+- KABSD-TSK-0303: Add Ready gate validation to update-state command
+- KABSD-TSK-0304: Add item check-ready CLI command
+- KABSD-TSK-0305: Implement is_ready() validation function in core
+- KABSD-TSK-0306: Add parent Ready gate check to item create command
+- KABSD-TSK-0307: Migrate item create command to use DB-based ID generation
+- KABSD-TSK-0308: Add id_sequences table to chunks.sqlite3 schema
+- KABSD-TSK-0309: Implement get_next_id_from_db() atomic ID generation
+- KABSD-TSK-0310: Add migration script to initialize sequences from existing files
+- KABSD-TSK-0311: Add tests for concurrent ID generation
+- KABSD-TSK-0312: Refine Ready Gate definitions by item type
+- KABSD-TSK-0313: Implement unified search interface with --corpus parameter
+- KABSD-TSK-0314: Add human-readable metadata files for vector indexes
+- KABSD-TSK-0315: Implement binary vector storage format (struct.pack)
+- KABSD-TSK-0315: Support vLLM and OpenAI-compatible embedding APIs
+- KABSD-TSK-0317: Add orphan commit detection and git hooks for backlog discipline
+- KABSD-TSK-0321: Implement project-level config schema and loading
+- KABSD-TSK-0322: Update config resolution logic with precedence hierarchy
+- KABSD-TSK-0323: Add CLI support for --config-file parameter
+- KABSD-TSK-0327: Implement debug mode config and documentation system
+- KABSD-TSK-0328: Reorganize cache structure and clean up obsolete directories
+- KABSD-TSK-0331: Add configurable cache root for shared storage (NAS support)
+- KABSD-TSK-0334: Migrate product-specific configs to project-level config
+- KABSD-TSK-0335: Document ID allocation mechanism and sync-sequences workflow in SKILL.md
+- KABSD-TSK-0337: Add CLI warning when DB sequence is stale during item creation
+- KABSD-TSK-0338: Add DB sequence health check to doctor command
+- KABSD-TSK-0339: Auto-sync DB sequences in item create if stale detected
+- KABSD-TSK-0344: Simplify product config schema by flattening overrides section
+- KABSD-TSK-0345: Remove deprecated vector.path from configuration
+- KABSD-TSK-0346: Remove deprecated shared.index configuration section
+- KABSD-TSK-0347: Add comprehensive flattened keys for all common configuration overrides
+- KABSD-TSK-0348: Remove legacy project config overrides; enforce flattened-only product config
+- KABSD-TSK-0349: Benchmark paid OpenAI embeddings vs local sentence-transformers
+- KABSD-TSK-0350: Add HuggingFace embedding provider (sentence-transformers) for local vectors
+- KABSD-TSK-0351: Add named config profiles for pipeline experiments (topic/workset driven)
+- KABSD-TSK-0352: Move config profiles next to .kano/backlog_config.toml
+- KABSD-TSK-0353: Allow --profile to accept path or shorthand
+- KABSD-TSK-0354: Make --profile path-first with shorthand fallback
+- KABSD-TSK-0355: Document Docker/agent prerequisites for admin init
+- KABSD-TSK-0356: Make shorthand profiles prefer .kano/backlog_config
+- KABSD-TSK-0358: Auto-load local.secrets.env with override env file
+- KABSD-TSK-0360: Add stable vs runtime effective config artifacts + mtime cache
+- KABSD-TSK-0362: Add default profile guidance to project config template
+- KABSD-TSK-0365: Benchmark embedding search: noop vs gemini vs huggingface
+- KABSD-TSK-0367: Fix Phase2 smoke sandbox root mismatch for topic merge
+- KABSD-TSK-0371: Inventory Python modules and map to C++ package boundaries
+- KABSD-USR-0001: Plan work before coding
+- KABSD-USR-0009: Ship built-in process definitions and select via config
+- KABSD-USR-0011: Enforce Agent Identity in Skill
+- KABSD-USR-0012: Index file-based backlog into SQLite (rebuildable)
+- KABSD-USR-0014: Configurable process: choose file-only vs DB index backend
+- KABSD-USR-0015: Generate embeddings for backlog items (derivative index)
+- KABSD-USR-0016: DB-index views: query DB and render Markdown dashboards
+- KABSD-USR-0017: Query the SQLite index via skill scripts (read-only)
+- KABSD-USR-0018: VCS Adapter Abstraction Layer
+- KABSD-USR-0029: Chunking and token-budget embedding pipeline MVP
+- KABSD-USR-0030: Pluggable vector backend MVP for embeddings
+- KABSD-USR-0031: Embedding adapter interface with token-counting telemetry
+- KABSD-USR-0032: Tokenizer adapters for accurate token counting (OpenAI and local)
+- KABSD-USR-0033: Config-driven switching for chunking, tokenizer, embedder, and vector backend
+- KABSD-USR-0034: Benchmark harness for chunking and embedding options (multilingual, window
+- KABSD-USR-0035: Decide cross-lingual retrieval and index strategy via ADRs
+- KABSD-USR-0036: Implement Topic Template System with Predefined Archetypes
+- KABSD-USR-0037: Implement Lightweight Topic Cross-Reference System
+- KABSD-USR-0038: Implement Topic Snapshot System with Named Checkpoints
+- KABSD-USR-0039: Implement Topic Merge and Split Operations with History Preservation

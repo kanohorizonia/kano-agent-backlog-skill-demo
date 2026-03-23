@@ -1,0 +1,19 @@
+{
+  "topic": "native-topic-smoke",
+  "agent": "opencode",
+  "seed_items": [
+    "019cbf2d-0c1d-74a5-86bf-665e84cb611a"
+  ],
+  "pinned_docs": [
+    "docs/cpp-runtime-architecture.md"
+  ],
+  "snippet_refs": [
+    {"type": "snippet", "repo": "local", "revision": "native", "file": "docs/cpp-runtime-architecture.md", "lines": [1, 5], "hash": "hash:955411cb0cdcc5a1", "cached_text": "# C++ Runtime Architecture (Python Elimination)\n\n## Module Decomposition\n\n```mermaid", "collected_at": "2026-03-11T09:06:44Z", "collector": "opencode"}
+  ],
+  "related_topics": [  ],
+  "status": "closed",
+  "closed_at": "2026-03-11T08:49:12Z",
+  "created_at": "2026-03-11T08:27:56Z",
+  "updated_at": "2026-03-11T09:06:44Z",
+  "has_spec": false
+}

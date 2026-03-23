@@ -1,0 +1,17 @@
+Native test harness verification
+
+Command
+
+- `ctest --test-dir src/cpp/build/windows-ninja-msvc --output-on-failure`
+
+Result
+
+- `backlog_core_smoke_test`: PASS
+- `workitem_ops_smoke_test`: PASS
+- `cli_repo_smoke_test`: PASS
+- Summary: 3/3 tests passed
+
+Notes
+
+- Native test execution is now wired through CTest from `src/cpp/CMakeLists.txt`.
+- Coverage currently focuses on deterministic core parsing/validation/state behavior, native workitem operations, and repo-level CLI smoke coverage for `doctor`, `config`, `topic`, and `workset` commands.

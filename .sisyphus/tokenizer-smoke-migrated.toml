@@ -1,0 +1,4 @@
+adapter = "charcount"
+model = "demo"
+max_tokens = 1024
+fallback_chain = ["charcount"]

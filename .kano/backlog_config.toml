@@ -51,3 +51,9 @@ enabled = true
 backend = "sqlite"
 collection = "backlog"
 metric = "cosine"
+
+# Added by kano-backlog admin init (agent=opencode)
+[products.native-admin-smoke]
+name = "native-admin-smoke"
+prefix = "NAS"
+backlog_root = "native_init_backlog/products/native-admin-smoke"

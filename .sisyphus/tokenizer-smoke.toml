@@ -1,0 +1,11 @@
+# Example tokenizer configuration
+adapter = "tiktoken"
+model = "gpt-4o-mini"
+max_tokens = 8192
+fallback_chain = ["tiktoken", "charcount"]
+
+[adapter_options.tiktoken]
+encoding = "cl100k_base"
+
+[adapter_options.charcount]
+chars_per_token = 4.0
